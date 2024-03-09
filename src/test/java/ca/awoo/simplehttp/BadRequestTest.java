@@ -1,5 +1,7 @@
 package ca.awoo.simplehttp;
 
+import static org.junit.Assert.assertEquals;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -28,7 +30,7 @@ public class BadRequestTest {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.connect();
-        assert connection.getResponseCode() == 400;
+        assertEquals(400, connection.getResponseCode());
         listener.close();
         listenerThread.join();
     }

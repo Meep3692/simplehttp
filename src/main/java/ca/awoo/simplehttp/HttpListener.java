@@ -80,7 +80,11 @@ public class HttpListener {
                             }
                             try{
                                 handler.handle(request, response);
+                            } catch(HttpException e) {
+                                //Rethrow HttpExceptions so the errorhandler can handle them
+                                throw e;
                             } catch(Exception e) {
+                                //Convert all other exceptions to a 500 Internal Server Error
                                 throw new InternalServerException(e);
                             }
                         } catch(HttpException e) {
